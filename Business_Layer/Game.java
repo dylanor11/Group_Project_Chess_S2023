@@ -26,6 +26,6 @@ public class Game {
 
     public boolean getCurPlayer() { return curPlayer; }
 
-    public Board getBoard() { return board; }
+    public Board getBoard() { return board; } // could also return the array of pieces with board.getBoard()
 
 }
