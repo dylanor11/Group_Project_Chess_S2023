@@ -1,0 +1,12 @@
+This is just a initial idea of how we could organize the project, feel free to mess around with it.
+
+Player turn/color is always represented as White = true, Black = false
+
+I set board locations with [rank][file] since that is how moves are usually described verbally eg. A4
+--> A = 0, B = 1, ... , G = 6, H = 7
+
+Piece names/types are currently represented as strings, although using an Enum could also be an option
+
+I also included separate folders for the business and user/presentation layers for organization purposes
+
+Piece_Classes is a subfolder of the business layer for readability, but may end up not being the best strategy
