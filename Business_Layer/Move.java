@@ -20,4 +20,18 @@ public class Move {
     public int[] getEnd() { return endSpace; }
 
     public String getPieceType() { return pieceType; }
+
+    // technically doesn't generate standard chess notation
+    public String toString() {
+        return pieceType.substring(0,1) + squareToString(startSpace) + " - " + squareToString(endSpace);
+    }
+
+    private static String squareToString(int[] square) {
+        return fileToLetter(square[0]) + Integer.toString(square[1]);
+    }
+
+    public static char fileToLetter(int f) {
+        return (char)(f + 97); // 
+    }
+
 }
