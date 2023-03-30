@@ -21,6 +21,23 @@ public class Move {
 
     public String getPieceType() { return pieceType; }
 
+    public boolean equals(Move otherMove) { // very rudimentary, need to keep track of move number to get actual move equality
+        return startSpace[0] == otherMove.getStart()[0]
+            && startSpace[1] == otherMove.getStart()[1]
+            && endSpace[0]   == otherMove.getEnd()[0]
+            && endSpace[1]   == otherMove.getEnd()[1];
+    }
+
+    public boolean isInList(List<Move> otherMoves) {
+        boolean contains = false;
+        for(Move move : otherMoves) {
+            if(this.equals(move)) {
+                contains = true;
+            }
+        }
+        return contains;
+    }
+
     // technically doesn't generate standard chess notation
     public String toString() {
         return pieceType.substring(0,1) + squareToString(startSpace) + " - " + squareToString(endSpace);

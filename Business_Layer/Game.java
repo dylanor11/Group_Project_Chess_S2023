@@ -36,13 +36,27 @@ public class Game {
         if(movingPiece != null) {
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
-            moves.add(new Move(curPlayer));
+            moves.add(new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getPieceType()));
+            curPlayer = !curPlayer;
             return true;
         }
         return false; // TODO: will return false if move is illegal
     }
 
-    // public boolean move(int startFile, int startRank, int endFile, int endRank) {
-    //     movingPiece = board.getBoard()[startFile][startRank];
-    // }
+    public boolean move(int startFile, int startRank, int endFile, int endRank) {
+        movingPiece = board.getBoard()[startFile][startRank];
+        if(movingPiece == null) return false;
+        // else
+        move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getPieceType());
+
+        if(move.isInList(movingPiece.getLegalMoves())) {
+            board.getBoard()[endFile][endRank] = movingPiece;
+            board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
+            moves.add(move);
+            curPlayer = !curPlayer;
+            return true;
+        }
+        return false;
+    }
+
 }
