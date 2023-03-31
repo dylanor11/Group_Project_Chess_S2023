@@ -62,4 +62,41 @@ public class Game {
         return false;
     }
 
+    public void rudimentaryPrint() {
+        Piece[][] curBoard = board.getBoard();
+        String[] ranks = new String[8];
+        Piece curPiece;
+        for(int i = 0; i < curBoard.length; i++) { // row - rank
+            ranks[i] = "";
+            for (int j = 0; j < curBoard.length; j++) { // column - file
+                curPiece = curBoard[j][i];
+
+                if (curPiece == null) {
+                    ranks[i] += ". ";
+                } else {
+                    ranks[i] += curPiece.getSymbol() + " ";
+                }
+            }
+        }
+        
+        for(int k = 7; k >= 0; k--) {
+            System.out.println(ranks[k]);
+        }
+
+        System.out.println("---------------\n");
+    }
+
+    public static void main(String[] args) {
+        Game game1 = new Game();
+        game1.rudimentaryPrint();
+        game1.move(1, 0, 2, 2);
+        game1.move(6, 0, 7, 2);
+        game1.move(1, 7, 0, 5);
+        game1.move(6, 7, 7, 5);
+
+        // game1.move(0, 0, 0, 2);
+        game1.rudimentaryPrint();
+
+        // TODO: Add interactive user-input testing in console
+    }
 }
