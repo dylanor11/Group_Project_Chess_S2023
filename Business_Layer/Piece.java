@@ -9,6 +9,7 @@ public abstract class Piece {
     protected boolean hasMoved;
     protected String name; // this may be redundant given the subclasses
     protected char symbol;
+    protected List<Move> legalMoves;
 
     public int getRank() { return rank; }
 
@@ -21,6 +22,12 @@ public abstract class Piece {
     public String getPiece() { return name; }
 
     public char getSymbol() { return symbol; }
+    
+    public void printLegalMoves() {
+        for( Move move : legalMoves ) {
+            System.out.print(move.toString() + ", ");
+        }
+    }
 
     /*
      * Returns a list of legal moves for the piece given the current board state
