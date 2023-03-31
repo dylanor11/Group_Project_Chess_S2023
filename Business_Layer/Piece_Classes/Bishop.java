@@ -15,6 +15,7 @@ public class Bishop extends Piece {
         color = c;
         hasMoved = false;
         name = "Bishop";
+        symbol = 'B';
     }
 
     @Override

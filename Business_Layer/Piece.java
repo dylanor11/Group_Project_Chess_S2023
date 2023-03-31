@@ -8,6 +8,7 @@ public abstract class Piece {
     protected boolean color; // true for white, false for black
     protected boolean hasMoved;
     protected String name; // this may be redundant given the subclasses
+    protected char symbol;
 
     public int getRank() { return rank; }
 
@@ -18,6 +19,8 @@ public abstract class Piece {
     public boolean getHasMoved() { return hasMoved; }
 
     public String getPiece() { return name; }
+
+    public char getSymbol() { return symbol; }
 
     /*
      * Returns a list of legal moves for the piece given the current board state

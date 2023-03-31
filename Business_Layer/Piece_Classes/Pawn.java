@@ -15,6 +15,7 @@ public class Pawn extends Piece {
         color = c;
         hasMoved = false;
         name = "Pawn";
+        symbol = 'P';
     }
 
     @Override
