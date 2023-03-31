@@ -1,12 +1,14 @@
 package Group_Project_Chess_S2023.Business_Layer;
 
+import java.util.List;
+
 public class Move {
     private boolean player; // true for white, false for black
     private int[] startSpace;
     private int[] endSpace;
-    private String pieceType;
+    private char pieceType;
 
-    public Move(boolean p, int startFile, int startRank, int endFile, int endRank, String piece) {
+    public Move(boolean p, int startFile, int startRank, int endFile, int endRank, char piece) {
         player = p;
         startSpace = new int[] {startFile, startRank};
         endSpace = new int[] {endFile, endRank};
@@ -19,7 +21,7 @@ public class Move {
 
     public int[] getEnd() { return endSpace; }
 
-    public String getPieceType() { return pieceType; }
+    public char getPieceType() { return pieceType; }
 
     public boolean equals(Move otherMove) { // very rudimentary, need to keep track of move number to get actual move equality
         return startSpace[0] == otherMove.getStart()[0]
@@ -40,7 +42,7 @@ public class Move {
 
     // technically doesn't generate standard chess notation
     public String toString() {
-        return pieceType.substring(0,1) + squareToString(startSpace) + " - " + squareToString(endSpace);
+        return pieceType + squareToString(startSpace) + " - " + squareToString(endSpace);
     }
 
     private static String squareToString(int[] square) {

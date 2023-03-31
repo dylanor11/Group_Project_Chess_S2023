@@ -29,40 +29,40 @@ public class Pawn extends Piece {
         //white
         if (color == true) {
             if (curBoard.getBoard()[file][rank+1] == null) { // space in front is open
-                newMoves.add(new Move(true, file, rank, file, rank+1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file, rank+1, 'P'));
                 if (!hasMoved && curBoard.getBoard()[file][rank+2] == null) { // should avoid any null pointer exceptions
-                    newMoves.add(new Move(true, file, rank, file, rank+2, "Pawn"));
+                    newMoves.add(new Move(true, file, rank, file, rank+2, 'P'));
                 }
             }
 
             // capturing left
             if(file > 0 && curBoard.getBoard()[file-1][rank+1] != null && curBoard.getBoard()[file-1][rank+1].getColor() == false) {
-                newMoves.add(new Move(true, file, rank, file-1, rank+1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file-1, rank+1, 'P'));
             }
 
             // capturing right
             if(file < 8 && curBoard.getBoard()[file+1][rank+1] != null && curBoard.getBoard()[file+1][rank+1].getColor() == false) {
-                newMoves.add(new Move(true, file, rank, file+1, rank+1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file+1, rank+1, 'P'));
             }
         }
         // black
         else {
             if(curBoard.getBoard()[file][rank-1] == null) {
-                newMoves.add(new Move(true, file, rank, file, rank-1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file, rank-1, 'P'));
 
                 if(!hasMoved && curBoard.getBoard()[file][rank-2] == null) {
-                    newMoves.add(new Move(true, file, rank, file, rank-2, "Pawn"));
+                    newMoves.add(new Move(true, file, rank, file, rank-2, 'P'));
                 }
             }
 
             // capturing left
             if(file > 0 && curBoard.getBoard()[file-1][rank-1] != null && curBoard.getBoard()[file-1][rank-1].getColor() == true) {
-                newMoves.add(new Move(true, file, rank, file-1, rank-1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file-1, rank-1, 'P'));
             }
 
             // capturing right
             if(file < 7 && curBoard.getBoard()[file+1][rank-1] != null && curBoard.getBoard()[file+1][rank-1].getColor() == true) {
-                newMoves.add(new Move(true, file, rank, file+1, rank-1, "Pawn"));
+                newMoves.add(new Move(true, file, rank, file+1, rank-1, 'P'));
             }
         }
 

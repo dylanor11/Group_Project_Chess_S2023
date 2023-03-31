@@ -1,5 +1,8 @@
 package Group_Project_Chess_S2023.Business_Layer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private Player[] players;
     private Board board;
@@ -32,11 +35,11 @@ public class Game {
     public Board getBoard() { return board; } // could also return the array of pieces with board.getBoard()
 
     public boolean freeMove(int startFile, int startRank, int endFile, int endRank) {
-        movingPiece = board.getBoard()[startFile][startRank];
+        Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece != null) {
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
-            moves.add(new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getPieceType()));
+            moves.add(new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol()));
             curPlayer = !curPlayer;
             return true;
         }
@@ -44,12 +47,12 @@ public class Game {
     }
 
     public boolean move(int startFile, int startRank, int endFile, int endRank) {
-        movingPiece = board.getBoard()[startFile][startRank];
+        Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece == null) return false;
         // else
-        move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getPieceType());
+        Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
 
-        if(move.isInList(movingPiece.getLegalMoves())) {
+        if(move.isInList(movingPiece.getLegalMoves(board))) {
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
             moves.add(move);
