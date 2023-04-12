@@ -7,8 +7,8 @@ public class Bishop implements Piece{
 
 	public void updateLegalMoves(Piece[][] board)
 		{
-			int startFile = this.getFile;
-			int startRank = this.getRank;
+			int startFile = this.file;
+			int startRank = this.rank;
 			//Reset the legalmoves
 			this.legalMoves = new ArrayList<Move>();
 
