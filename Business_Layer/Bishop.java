@@ -5,10 +5,13 @@ import java.lang.Math;
 public class Bishop implements Piece{
 	
 
-	public void updateLegalMoves(Piece[][] board, int startFile, int startRank)
+	public void updateLegalMoves(Piece[][] board)
 		{
+			int startFile = this.file;
+			int startRank = this.rank;
 			//Reset the legalmoves
-			this.legalMoves = new ArrayList<Move>;
+			this.legalMoves = new ArrayList<Move>();
+
 
 			//Direction 1
 			int checkRank = startRank + 1;
