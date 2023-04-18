@@ -48,16 +48,18 @@ public class Game {
 
     public boolean move(int startFile, int startRank, int endFile, int endRank) {
         Piece movingPiece = board.getBoard()[startFile][startRank];
-        if(movingPiece == null) return false;
+        if(movingPiece == null || movingPiece.getColor() != curPlayer) return false; // stops if player tries to move null or opponent piece
         // else
         Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
 
-        if(move.isInList(movingPiece.getLegalMoves(board))) {
+        if(move.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(move)) {
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
             moves.add(move);
             curPlayer = !curPlayer;
             return true;
+
+            // need special case moves to represent castle because it involves moving two pieces
         }
         return false;
     }
@@ -85,6 +87,23 @@ public class Game {
 
         System.out.println("---------------\n");
     }
+
+    // it may be best to put this function in the piece class to avoid adding check-causing moves to their lists
+    // this would make stalemate checking much easier
+    private boolean causesCheck(Move newMove) {
+        // creates new post-move board and checks if a given color's king will be in check in that position.
+        // current structure is more like static method
+        // need to verify that copying board won't overwrite any curBoard data
+        Board tempBoard = board.copy();
+
+        tempBoard.getBoard()[endFile][endRank] = movingPiece;
+        tempBoard.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
+        //moves.add(new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol()));
+        return tempBoard.inCheck(curPlayer); // returns if after the move the current player would be in check
+
+    }
+
+    // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
 
     public static void main(String[] args) {
         Game game1 = new Game();

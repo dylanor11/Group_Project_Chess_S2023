@@ -4,6 +4,8 @@ import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.*;
 
 public class Board {
     private Piece[][] squares; // [file][rank]
+    private Piece whiteKing;
+    private Piece blackKing;
     
     /*
      * Creates a new board with pieces in their designated positions
@@ -20,8 +22,8 @@ public class Board {
         squares[5][0] = new Bishop(5, 0, true);
 
         squares[3][0] = new Queen(3, 0, true);
-        squares[4][0] = new King(4, 0, true);
-
+        whiteKing = new King(4, 0, true);
+        squares[4][0] = whiteKing;
 
         squares[0][7] = new Rook(0, 7, false);
         squares[7][7] = new Rook(7, 7, false);
@@ -32,7 +34,8 @@ public class Board {
         squares[5][7] = new Bishop(5, 7, false);
 
         squares[3][7] = new Queen(3, 7, false);
-        squares[4][7] = new King(4, 7, false);
+        blackKing = new King(4, 7, false);
+        squares[4][7] = blackKing;
 
         // create pawns
         for(int i = 0; i < 8; i++) {
@@ -42,4 +45,57 @@ public class Board {
     }
 
     public Piece[][] getBoard() { return squares; }
+
+    public Board copy() {
+        Board newBoard = new Board();
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; rank++) {
+                newBoard.getBoard()[file][rank] = squares[file][rank];
+            }
+        }
+        return newBoard;
+    }
+
+    public boolean whiteInCheck() {
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; rank++) {
+                if(squares[file][rank] != null) {
+                    ArrayList<Move> tempMoves = tempPieces[file][rank].getLegalMoves(tempBoard);
+                    for(Move move : tempMoves) {
+                        if(move.getEnd()[0] == whiteKing.getFile() && move.getEnd()[1] == whiteKing.getRank());
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean blackInCheck() {
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; rank++) {
+                if(squares[file][rank] != null) {
+                    ArrayList<Move> tempMoves = tempPieces[file][rank].getLegalMoves(tempBoard);
+                    for(Move move : tempMoves) {
+                        if(move.getEnd()[0] == blackKing.getFile() && move.getEnd()[1] == blackKing.getRank());
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean inCheck(boolean curPlayer) {
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; rank++) {
+                if(squares[file][rank] != null) {
+                    ArrayList<Move> tempMoves = tempPieces[file][rank].getLegalMoves(tempBoard);
+                    for(Move move : tempMoves) {
+                        if(curPlayer) { // ... is white 
+                            if(move.getEnd()[0] == whiteKing.getFile() && move.getEnd()[1] == whiteKing.getRank());
+                        } else {
+                            if(move.getEnd()[0] == blackKing.getFile() && move.getEnd()[1] == blackKing.getRank());
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -15,6 +15,7 @@ public class Rook extends Piece {
         color = c;
         hasMoved = false;
         name = "Rook";
+        symbol = 'R';
     }
 
     @Override

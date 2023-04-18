@@ -7,15 +7,20 @@ public class Move {
     private int[] startSpace;
     private int[] endSpace;
     private char pieceType;
+    private boolean isCastle;
 
     public Move(boolean p, int startFile, int startRank, int endFile, int endRank, char piece) {
         player = p;
         startSpace = new int[] {startFile, startRank};
         endSpace = new int[] {endFile, endRank};
         pieceType = piece;
+        isCastle = false; 
+        // isCastle = piece == 'K' && Math.abs(startFile - endFile) > 1
     }
 
     public boolean getPlayer() { return player; }
+
+    public boolean isCastle() { return isCastle; }
 
     public int[] getStart() { return startSpace; }
 
