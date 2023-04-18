@@ -1,5 +1,5 @@
 package Group_Project_Chess_S2023.Business_Layer;
-
+import Group_Project_Chess_S2023.User_Layer.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +8,7 @@ public class Game {
     private Board board;
     private boolean curPlayer; // true if white, false if black
     private List<Move> moves;
+    private GameUI gameUI;
 
     /*
      * Creates a new game with 2 players of default names
@@ -105,6 +106,10 @@ public class Game {
 
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
 
+    public void setUpBoard() {
+        gameUI = new GameUI(this);
+    }
+
     public static void main(String[] args) {
         Game game1 = new Game();
         game1.rudimentaryPrint();
@@ -115,6 +120,7 @@ public class Game {
 
         // game1.move(0, 0, 0, 2);
         game1.rudimentaryPrint();
+        game1.setUpBoard();
 
         // TODO: Add interactive user-input testing in console
     }
