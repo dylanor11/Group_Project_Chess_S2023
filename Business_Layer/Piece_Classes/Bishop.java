@@ -1,9 +1,17 @@
-package Group_Project_Chess_S2023.Business_Layer;
+package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
 import java.util.List;
 import java.lang.Math;
 
 public class Bishop implements Piece{
 	
+	public Bishop(int f, int r, boolean c) {
+        file = f;
+        rank = r;
+        color = c;
+        hasMoved = false;
+        name = "Bishop";
+        symbol = 'B';
+    }
 
 	public void updateLegalMoves(Piece[][] board)
 		{
