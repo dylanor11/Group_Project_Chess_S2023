@@ -4,6 +4,15 @@ import java.lang.Math;
 
 
 public class Queen implements Piece{
+	
+	public Bishop(int f, int r, boolean c) {
+        file = f;
+        rank = r;
+        color = c;
+        hasMoved = false;
+        name = "Queen";
+        symbol = 'Q';
+    }
 
 public void updateLegalMoves(Piece[][] board)
 		{
