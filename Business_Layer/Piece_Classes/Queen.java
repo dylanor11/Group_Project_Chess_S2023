@@ -5,7 +5,7 @@ import java.lang.Math;
 
 public class Queen implements Piece{
 	
-	public Bishop(int f, int r, boolean c) {
+	public Queen(int f, int r, boolean c) {
         file = f;
         rank = r;
         color = c;
