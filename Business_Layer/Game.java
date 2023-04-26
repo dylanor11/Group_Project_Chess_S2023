@@ -1,5 +1,6 @@
 package Group_Project_Chess_S2023.Business_Layer;
 import Group_Project_Chess_S2023.User_Layer.*;
+import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.Queen;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class Game {
         Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece == null || movingPiece.getColor() != curPlayer) return false; // stops if player tries to move null or opponent piece
         // else
-        if(movingPiece.getSymbol == "P") // If the movivng piece is a pawn we check for that
+        if(movingPiece.getSymbol() == 'P') // If the movivng piece is a pawn we check for that
         	{
         		isPawnMove = true; 
         	}
@@ -109,13 +110,14 @@ public class Game {
     // it may be best to put this function in the piece class to avoid adding check-causing moves to their lists
     // this would make stalemate checking much easier
     private boolean causesCheck(Move newMove) {
+        Piece movingPiece = board.getBoard()[newMove.getStart()[0]][newMove.getStart()[1]];
         // creates new post-move board and checks if a given color's king will be in check in that position.
         // current structure is more like static method
         // need to verify that copying board won't overwrite any curBoard data
         Board tempBoard = board.copy();
 
-        tempBoard.getBoard()[endFile][endRank] = movingPiece;
-        tempBoard.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
+        tempBoard.getBoard()[newMove.getEnd()[0]][newMove.getEnd()[1]] = movingPiece;
+        tempBoard.getBoard()[newMove.getStart()[0]][newMove.getStart()[1]] = null; // hopefully this doesn't destroy the moving piece
         //moves.add(new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol()));
         return tempBoard.inCheck(curPlayer); // returns if after the move the current player would be in check
 

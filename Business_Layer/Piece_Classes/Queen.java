@@ -1,4 +1,9 @@
 package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
+
+import Group_Project_Chess_S2023.Business_Layer.Board;
+import Group_Project_Chess_S2023.Business_Layer.Move;
+import Group_Project_Chess_S2023.Business_Layer.Piece;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
 
@@ -14,7 +19,13 @@ public class Queen extends Piece{
         symbol = 'Q';
     }
 
-public void updateLegalMoves(Piece[][] board)
+	@Override
+    public List<Move> getLegalMoves(Board curBoard) {
+        updateLegalMoves(curBoard.getBoard());
+		return legalMoves;
+    }
+
+	public void updateLegalMoves(Piece[][] board)
 		{
 			int startFile = this.file;
 			int startRank = this.rank;
@@ -29,8 +40,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+					legalMoves.add(newMove);
 					checkRank++ ;
 					checkFile++;
 				}
@@ -39,8 +50,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -53,8 +64,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+					legalMoves.add(newMove);
 					checkRank++;
 					checkFile--;
 				}
@@ -63,8 +74,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -77,8 +88,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+					legalMoves.add(newMove);
 					checkRank--;
 					checkFile++;
 				}
@@ -87,8 +98,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -101,8 +112,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+					legalMoves.add(newMove);
 					checkRank--;
 					checkFile--;
 				}
@@ -111,8 +122,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -124,8 +135,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][startRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-					this.legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+					this.legalMoves.add(newMove);
 					checkFile++;
 				}
 				else
@@ -133,8 +144,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-						this.legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+						this.legalMoves.add(newMove);
 					}
 				}
 			}
@@ -146,8 +157,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][startRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-					this.legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+					this.legalMoves.add(newMove);
 					checkFile--;
 				}
 				else
@@ -155,8 +166,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-						this.legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+						this.legalMoves.add(newMove);
 					}
 				}
 			}
@@ -168,8 +179,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][startRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-					this.legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+					this.legalMoves.add(newMove);
 					checkRank++;
 				}
 				else
@@ -177,8 +188,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-						this.legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+						this.legalMoves.add(newMove);
 					}
 				}
 			}
@@ -189,8 +200,8 @@ public void updateLegalMoves(Piece[][] board)
 			{
 				if(board[checkFile][startRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-					this.legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+					this.legalMoves.add(newMove);
 					checkRank--;
 				}
 				else
@@ -198,8 +209,8 @@ public void updateLegalMoves(Piece[][] board)
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank);
-						this.legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
+						this.legalMoves.add(newMove);
 					}
 				}
 			}

@@ -1,7 +1,7 @@
 package Group_Project_Chess_S2023.Business_Layer;
 
 import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.*;
-
+import java.util.ArrayList;
 public class Board {
     private Piece[][] squares; // [file][rank]
     private Piece whiteKing;
@@ -22,8 +22,8 @@ public class Board {
         squares[5][0] = new Bishop(5, 0, true);
 
         squares[3][0] = new Queen(3, 0, true);
-        whiteKing = new King(4, 0, true);
-        squares[4][0] = whiteKing;
+        squares[4][0] = new King(4, 0, true);
+        whiteKing = squares[4][0];
 
         squares[0][7] = new Rook(0, 7, false);
         squares[7][7] = new Rook(7, 7, false);
@@ -34,8 +34,8 @@ public class Board {
         squares[5][7] = new Bishop(5, 7, false);
 
         squares[3][7] = new Queen(3, 7, false);
-        blackKing = new King(4, 7, false);
-        squares[4][7] = blackKing;
+        squares[4][7] = new King(4, 7, false);
+        blackKing = squares[4][7];
 
         // create pawns
         for(int i = 0; i < 8; i++) {
@@ -56,7 +56,11 @@ public class Board {
         return newBoard;
     }
 
+
     public boolean whiteInCheck() {
+        Board tempBoard = this.copy();
+        Piece[][] tempPieces = tempBoard.getBoard();
+
         for(int file = 0; file < 8; file++) {
             for(int rank = 0; rank < 8; rank++) {
                 if(squares[file][rank] != null) {
@@ -70,6 +74,9 @@ public class Board {
     }
 
     public boolean blackInCheck() {
+        Board tempBoard = this.copy();
+        Piece[][] tempPieces = tempBoard.getBoard();
+
         for(int file = 0; file < 8; file++) {
             for(int rank = 0; rank < 8; rank++) {
                 if(squares[file][rank] != null) {
@@ -83,6 +90,9 @@ public class Board {
     }
 
     public boolean inCheck(boolean curPlayer) {
+        Board tempBoard = this.copy();
+        Piece[][] tempPieces = tempBoard.getBoard();
+
         for(int file = 0; file < 8; file++) {
             for(int rank = 0; rank < 8; rank++) {
                 if(squares[file][rank] != null) {

@@ -1,4 +1,8 @@
 package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
+
+import Group_Project_Chess_S2023.Business_Layer.Board;
+import Group_Project_Chess_S2023.Business_Layer.Move;
+import Group_Project_Chess_S2023.Business_Layer.Piece;
 import java.util.List;
 import java.lang.Math;
 
@@ -11,6 +15,12 @@ public class Bishop extends Piece{
         hasMoved = false;
         name = "Bishop";
         symbol = 'B';
+    }
+
+	@Override
+    public List<Move> getLegalMoves(Board curBoard) {
+        updateLegalMoves(curBoard.getBoard());
+		return legalMoves;
     }
 
 	public void updateLegalMoves(Piece[][] board)

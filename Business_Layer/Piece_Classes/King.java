@@ -17,6 +17,7 @@ public class King extends Piece {
         color = c;
         hasMoved = false;
         name = "King";
+        symbol = 'K';
     }
 
     @Override
