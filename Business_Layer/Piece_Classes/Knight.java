@@ -19,8 +19,8 @@ public class Knight extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board curBoard) {
-        List<Move> newMoves = new ArrayList<Move>();
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
+        ArrayList<Move> newMoves = new ArrayList<Move>();
         // 8 if statements -- first check between files b and g
         if(file > 0) {
             if(rank > 1 && (curBoard.getBoard()[file-1][rank-2] == null || curBoard.getBoard()[file-1][rank-2].getColor() != color)) {

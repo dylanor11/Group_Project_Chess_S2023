@@ -21,7 +21,7 @@ public class King extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board curBoard) {
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
         List<Move> newMoves = new ArrayList<Move>();
         int[][] moves = {{-1, -1}, {0, -1}, {-1, -1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         for (int[] move : moves) {

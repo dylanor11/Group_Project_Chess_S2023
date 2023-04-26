@@ -19,12 +19,12 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board curBoard) {
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
         return generateLegalMoves(curBoard);
     }
 
-    private List<Move> generateLegalMoves(Board curBoard) {
-        List<Move> newMoves = new ArrayList<Move>();
+    public ArrayList<Move> generateLegalMoves(Board curBoard) {
+        ArrayList<Move> newMoves = new ArrayList<Move>();
         
         //white
         if (color == true) {

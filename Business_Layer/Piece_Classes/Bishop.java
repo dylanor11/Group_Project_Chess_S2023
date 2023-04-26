@@ -3,7 +3,7 @@ package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
 import Group_Project_Chess_S2023.Business_Layer.Board;
 import Group_Project_Chess_S2023.Business_Layer.Move;
 import Group_Project_Chess_S2023.Business_Layer.Piece;
-import java.util.List;
+import java.util.ArrayList;
 import java.lang.Math;
 
 public class Bishop extends Piece{
@@ -18,7 +18,7 @@ public class Bishop extends Piece{
     }
 
 	@Override
-    public List<Move> getLegalMoves(Board curBoard) {
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
         updateLegalMoves(curBoard.getBoard());
 		return legalMoves;
     }
@@ -39,8 +39,8 @@ public class Bishop extends Piece{
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+					legalMoves.add(newMove);
 					checkRank++ ;
 					checkFile++;
 				}
@@ -49,8 +49,8 @@ public class Bishop extends Piece{
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -63,8 +63,8 @@ public class Bishop extends Piece{
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+					legalMoves.add(newMove);
 					checkRank++;
 					checkFile--;
 				}
@@ -73,8 +73,8 @@ public class Bishop extends Piece{
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -87,8 +87,8 @@ public class Bishop extends Piece{
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+					legalMoves.add(newMove);
 					checkRank--;
 					checkFile++;
 				}
@@ -97,8 +97,8 @@ public class Bishop extends Piece{
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+						legalMoves.add(newMove);
 					}
 				}
 			}
@@ -111,8 +111,8 @@ public class Bishop extends Piece{
 			{
 				if(board[checkFile][checkRank] == null)
 				{
-					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-					legalMoves.append(newMove);
+					Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+					legalMoves.add(newMove);
 					checkRank--;
 					checkFile--;
 				}
@@ -121,8 +121,8 @@ public class Bishop extends Piece{
 					blocked = true;
 					if(board[checkFile][checkRank].getColor() != this.color)
 					{
-						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank);
-						legalMoves.append(newMove);
+						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'B');
+						legalMoves.add(newMove);
 					}
 				}
 			}

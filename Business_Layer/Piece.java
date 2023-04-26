@@ -1,6 +1,6 @@
 package Group_Project_Chess_S2023.Business_Layer;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Piece {
     protected int rank;
@@ -9,7 +9,7 @@ public abstract class Piece {
     protected boolean hasMoved;
     protected String name; // this may be redundant given the subclasses
     protected char symbol;
-    protected List<Move> legalMoves;
+    protected ArrayList<Move> legalMoves;
 
     public int getRank() { return rank; }
 
@@ -32,6 +32,6 @@ public abstract class Piece {
     /*
      * Returns a list of legal moves for the piece given the current board state
      */
-    public abstract List<Move> getLegalMoves(Board curBoard);
+    public abstract ArrayList<Move> getLegalMoves(Board curBoard);
 
 }

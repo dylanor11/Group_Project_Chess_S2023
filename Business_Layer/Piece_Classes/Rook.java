@@ -19,8 +19,8 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board curBoard) {
-        List<Move> newMoves = new ArrayList<Move>();
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
+        ArrayList<Move> newMoves = new ArrayList<Move>();
         int newFile;
         int newRank;
         int step = 1;
@@ -30,7 +30,7 @@ public class Rook extends Piece {
                 newFile = file -step;
                 newRank = rank ;
                 if (isValidRookMove(curBoard,newFile, newRank)) {
-                    newMoves.add(new Move(color,file, rank, newFile, newRank, "Rook"));
+                    newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
                     step++;
                 }
                 else{
@@ -45,7 +45,7 @@ public class Rook extends Piece {
             newFile = file +step;
             newRank = rank ;
             if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, "Rook"));
+                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
                 step++;
             }
             else{
@@ -60,7 +60,7 @@ public class Rook extends Piece {
             newFile = file ;
             newRank = rank - step;
             if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, "Rook"));
+                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
                 step++;
             }
             else{
@@ -75,7 +75,7 @@ public class Rook extends Piece {
             newFile = file ;
             newRank = rank + step;
             if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, "Rook"));
+                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
                 step++;
             }
             else{
@@ -90,10 +90,17 @@ public class Rook extends Piece {
 
 
     public boolean isValidRookMove(Board curBoard, int toFile, int toRank) {
-        Piece piece = curBoard.getBoard()[toFile][toRank];
+        
         if ( toFile < 0 || toFile >= 7 || toRank < 0 || toRank >= 7) {
             return false;  // Piece out of board range, move invalid
         }
+
+        Piece piece = curBoard.getBoard()[toFile][toRank];
+
+        if(piece == null) {
+            return false;
+        }
+
         if (piece.getColor() == color) {
             return false;  // The target position is occupied by a friendly piece, move invalid
         }

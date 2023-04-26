@@ -4,9 +4,6 @@ import Group_Project_Chess_S2023.Business_Layer.Board;
 import Group_Project_Chess_S2023.Business_Layer.Move;
 import Group_Project_Chess_S2023.Business_Layer.Piece;
 import java.util.ArrayList;
-import java.util.List;
-import java.lang.Math;
-
 
 public class Queen extends Piece{
 	
@@ -20,7 +17,7 @@ public class Queen extends Piece{
     }
 
 	@Override
-    public List<Move> getLegalMoves(Board curBoard) {
+    public ArrayList<Move> getLegalMoves(Board curBoard) {
         updateLegalMoves(curBoard.getBoard());
 		return legalMoves;
     }
