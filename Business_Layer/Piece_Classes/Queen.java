@@ -1,9 +1,9 @@
-package Group_Project_Chess_S2023.Business_Layer;
+package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
 import java.util.List;
 import java.lang.Math;
 
 
-public class Queen implements Piece{
+public class Queen extends Piece{
 	
 	public Queen(int f, int r, boolean c) {
         file = f;
@@ -48,7 +48,7 @@ public void updateLegalMoves(Piece[][] board)
 			//Direction 2
 			checkRank = startRank + 1;
 			checkFile = startFile - 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -72,7 +72,7 @@ public void updateLegalMoves(Piece[][] board)
 			//Direction 3
 			checkRank = startRank - 1;
 			checkFile = startFile + 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -96,7 +96,7 @@ public void updateLegalMoves(Piece[][] board)
 			//Direction 4
 			checkRank = startRank - 1;
 			checkFile = startFile - 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -118,8 +118,8 @@ public void updateLegalMoves(Piece[][] board)
 			}
 
 			//Direction 5
-			int checkFile = startFile + 1;
-			boolean blocked = false;
+			checkFile = startFile + 1;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][startRank] == null)
@@ -140,8 +140,8 @@ public void updateLegalMoves(Piece[][] board)
 			}
 
 			//Direction 6
-			int checkFile = startFile - 1;
-			boolean blocked = false;
+			checkFile = startFile - 1;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][startRank] == null)
@@ -162,8 +162,8 @@ public void updateLegalMoves(Piece[][] board)
 			}
 
 			//Direction 7
-			int checkRank = startRank + 1;
-			boolean blocked = false;
+			checkRank = startRank + 1;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][startRank] == null)
@@ -183,8 +183,8 @@ public void updateLegalMoves(Piece[][] board)
 				}
 			}
 			//Direction 8
-			int checkRank = startRank - 1;
-			boolean blocked = false;
+			checkRank = startRank - 1;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][startRank] == null)
@@ -203,4 +203,6 @@ public void updateLegalMoves(Piece[][] board)
 					}
 				}
 			}
-}
+		}
+	}
+

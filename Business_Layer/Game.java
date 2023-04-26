@@ -119,8 +119,8 @@ public class Game {
         game1.move(6, 7, 7, 5);
 
         // game1.move(0, 0, 0, 2);
-        game1.rudimentaryPrint();
-        game1.setUpBoard();
+        //game1.rudimentaryPrint();
+        //game1.setUpBoard();
 
         // TODO: Add interactive user-input testing in console
     }

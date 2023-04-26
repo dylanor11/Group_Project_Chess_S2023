@@ -2,7 +2,7 @@ package Group_Project_Chess_S2023.Business_Layer.Piece_Classes;
 import java.util.List;
 import java.lang.Math;
 
-public class Bishop implements Piece{
+public class Bishop extends Piece{
 	
 	public Bishop(int f, int r, boolean c) {
         file = f;
@@ -48,7 +48,7 @@ public class Bishop implements Piece{
 			//Direction 2
 			checkRank = startRank + 1;
 			checkFile = startFile - 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -72,7 +72,7 @@ public class Bishop implements Piece{
 			//Direction 3
 			checkRank = startRank - 1;
 			checkFile = startFile + 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -96,7 +96,7 @@ public class Bishop implements Piece{
 			//Direction 4
 			checkRank = startRank - 1;
 			checkFile = startFile - 1;
-			boolean blocked = false;
+			blocked = false;
 			while(!blocked)
 			{
 				if(board[checkFile][checkRank] == null)
@@ -164,9 +164,10 @@ public class Bishop implements Piece{
 			//moving forward from white perspective
 			rankOffset = 1;
 		}
-		int x = startRank + rankOffset;
+		//int x = startRank + rankOffset;
 		int y = startFile + fileOffset;
-		for(x; x != endRank; x + rankOffset){
+
+		for(int x = startRank + rankOffset; x != endRank; x += rankOffset){
 			if(board[y][x] != nullPiece){
 				return false;
 			}
