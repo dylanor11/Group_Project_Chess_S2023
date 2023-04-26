@@ -47,13 +47,30 @@ public class Game {
         return false; // TODO: will return false if move is illegal
     }
 
-    public boolean move(int startFile, int startRank, int endFile, int endRank) {
+   public boolean move(int startFile, int startRank, int endFile, int endRank) {
+		boolean isPawnMove = false; //We need to know this for pawn promotion and for en passant
+		
         Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece == null || movingPiece.getColor() != curPlayer) return false; // stops if player tries to move null or opponent piece
         // else
+        if(movingPiece.getSymbol == "P") // If the movivng piece is a pawn we check for that
+        	{
+        		isPawnMove = true; 
+        	}
         Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
 
         if(move.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(move)) {
+        	if(isPawnMove)
+        		{
+        			if(endFile == 7)
+        			{
+        				movingPiece = new Queen(startFile, startRank, true);
+        			}
+        			if(endFile == 0)
+        			{
+        				movingPiece = new Queen(startFile, startRank, false);
+        			}
+        		}
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
             moves.add(move);
@@ -63,7 +80,7 @@ public class Game {
             // need special case moves to represent castle because it involves moving two pieces
         }
         return false;
-    }
+}
 
     public void rudimentaryPrint() {
         Piece[][] curBoard = board.getBoard();
