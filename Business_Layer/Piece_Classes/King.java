@@ -22,7 +22,7 @@ public class King extends Piece {
 
     @Override
     public ArrayList<Move> getLegalMoves(Board curBoard) {
-        List<Move> newMoves = new ArrayList<Move>();
+        ArrayList<Move> newMoves = new ArrayList<Move>();
         int[][] moves = {{-1, -1}, {0, -1}, {-1, -1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         for (int[] move : moves) {
 
@@ -30,7 +30,7 @@ public class King extends Piece {
             int newRank = rank + move[1];
 
             if (isValidKingMove(curBoard,newFile, newRank)) {
-              newMoves.add(new Move(color,file, rank, newFile, newRank, "King"));
+              newMoves.add(new Move(color,file, rank, newFile, newRank, 'K'));
             }
         }
         return newMoves;
@@ -38,10 +38,17 @@ public class King extends Piece {
 
 
     public boolean isValidKingMove(Board curBoard, int toFile, int toRank) {
-        Piece piece = curBoard.getBoard()[toFile][toRank];
+        
         if ( toFile < 0 || toFile >= 7 || toRank < 0 || toRank >= 7) {
             return false;  // Piece out of board range, move invalid
         }
+
+        Piece piece = curBoard.getBoard()[toFile][toRank];
+
+        if(piece == null) {
+            return false;
+        }
+
         if (piece.getColor() == color) {
             return false;  // The target position is occupied by a friendly piece, move invalid
         }

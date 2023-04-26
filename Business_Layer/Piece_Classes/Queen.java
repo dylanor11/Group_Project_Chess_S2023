@@ -33,7 +33,7 @@ public class Queen extends Piece{
 			int checkRank = startRank + 1;
 			int checkFile = startFile + 1;
 			boolean blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
@@ -57,7 +57,7 @@ public class Queen extends Piece{
 			checkRank = startRank + 1;
 			checkFile = startFile - 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
@@ -81,7 +81,7 @@ public class Queen extends Piece{
 			checkRank = startRank - 1;
 			checkFile = startFile + 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
@@ -105,7 +105,7 @@ public class Queen extends Piece{
 			checkRank = startRank - 1;
 			checkFile = startFile - 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][checkRank] == null)
 				{
@@ -128,7 +128,7 @@ public class Queen extends Piece{
 			//Direction 5
 			checkFile = startFile + 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][startRank] == null)
 				{
@@ -150,7 +150,7 @@ public class Queen extends Piece{
 			//Direction 6
 			checkFile = startFile - 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][startRank] == null)
 				{
@@ -172,7 +172,7 @@ public class Queen extends Piece{
 			//Direction 7
 			checkRank = startRank + 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][startRank] == null)
 				{
@@ -193,7 +193,7 @@ public class Queen extends Piece{
 			//Direction 8
 			checkRank = startRank - 1;
 			blocked = false;
-			while(!blocked)
+			while(!blocked && checkRank >= 0 && checkRank < 8 && checkFile >= 0 && checkFile < 8)
 			{
 				if(board[checkFile][startRank] == null)
 				{

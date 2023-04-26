@@ -41,7 +41,7 @@ public class Pawn extends Piece {
             }
 
             // capturing right
-            if(file < 8 && curBoard.getBoard()[file+1][rank+1] != null && curBoard.getBoard()[file+1][rank+1].getColor() == false) {
+            if(file < 7 && curBoard.getBoard()[file+1][rank+1] != null && curBoard.getBoard()[file+1][rank+1].getColor() == false) {
                 newMoves.add(new Move(true, file, rank, file+1, rank+1, 'P'));
             }
         }

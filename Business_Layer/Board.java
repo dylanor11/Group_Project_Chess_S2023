@@ -71,6 +71,8 @@ public class Board {
                 }
             }
         }
+
+        return false;
     }
 
     public boolean blackInCheck() {
@@ -87,6 +89,8 @@ public class Board {
                 }
             }
         }
+
+        return false;
     }
 
     public boolean inCheck(boolean curPlayer) {
@@ -107,5 +111,7 @@ public class Board {
                 }
             }
         }
+
+        return false; // temporary
     }
 }
