@@ -103,9 +103,13 @@ public class Board {
                     ArrayList<Move> tempMoves = tempPieces[file][rank].getLegalMoves(tempBoard);
                     for(Move move : tempMoves) {
                         if(curPlayer) { // ... is white 
-                            if(move.getEnd()[0] == whiteKing.getFile() && move.getEnd()[1] == whiteKing.getRank());
+                            if(move.getEnd()[0] == whiteKing.getFile() && move.getEnd()[1] == whiteKing.getRank()) {
+                                return true;
+                            }
                         } else {
-                            if(move.getEnd()[0] == blackKing.getFile() && move.getEnd()[1] == blackKing.getRank());
+                            if(move.getEnd()[0] == blackKing.getFile() && move.getEnd()[1] == blackKing.getRank()) {
+                                return true;
+                            }
                         }
                     }
                 }

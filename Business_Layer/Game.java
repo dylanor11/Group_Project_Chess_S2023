@@ -131,11 +131,11 @@ public class Game {
 
     public static void main(String[] args) {
         Game game1 = new Game();
-        game1.rudimentaryPrint();
-        game1.move(1, 0, 2, 2);
-        game1.move(6, 0, 7, 2);
-        game1.move(1, 7, 0, 5);
-        game1.move(6, 7, 7, 5);
+        //game1.rudimentaryPrint();
+        //game1.move(1, 0, 2, 2);
+        //game1.move(6, 0, 7, 2);
+        //game1.move(1, 7, 0, 5);
+        //game1.move(6, 7, 7, 5);
 
         // game1.move(0, 0, 0, 2);
         //game1.rudimentaryPrint();
