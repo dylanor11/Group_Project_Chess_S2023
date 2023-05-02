@@ -27,7 +27,7 @@ public class Move {
     public int[] getEnd() { return endSpace; }
 
     public char getPieceType() { return pieceType; }
-
+    
     public boolean equals(Move otherMove) { // very rudimentary, need to keep track of move number to get actual move equality
         return startSpace[0] == otherMove.getStart()[0]
             && startSpace[1] == otherMove.getStart()[1]

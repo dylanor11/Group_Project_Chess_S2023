@@ -48,101 +48,20 @@ public class Game {
         return false; // TODO: will return false if move is illegal
     }
 
-  public boolean move(int startFile, int startRank, int endFile, int endRank) {
+   public boolean move(int startFile, int startRank, int endFile, int endRank) {
 		boolean isPawnMove = false; //We need to know this for pawn promotion and for en passant
-        move lastMove = moves[moves.size()-1];
+		
         Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece == null || movingPiece.getColor() != curPlayer) return false; // stops if player tries to move null or opponent piece
-        if(movingPiece.getSymbol == "P") // If the movivng piece is a pawn we check for that
+        // else
+        if(movingPiece.getSymbol() == 'P') // If the movivng piece is a pawn we check for that
         	{
         		isPawnMove = true; 
         	}
-        
-        //SEPERATE LOGIC FOR EN PASSANT MOVE
-        if(isPawnMove)
-        {  
-            //If the last move was was a pawn double move
-            if(lastMove.getPieceType() == "P" && Math.abs(lastMove.getStart()[1] - lastMove.getEnd()[1]) = 2)
-            {
-                //If our pawn is on the same rank as where the last one ended
-                if(startRank == lastMove.getEnd()[1])
-                {   
-                    // If our pawn is next to the double moving pawn from last move
-                    if(lastMove.getEnd()[0] == startFile - 1)
-                    {
-                        //Left capture
-                        if(endFile == startFile - 1)
-                        {
-                            if(endRank == startRank + 1 && movingPiece.getColor())
-                                {
-                                    //Valid white En passant left
-                                    Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
-                                    board.getBoard()[endFile][endRank] = movingPiece;
-                                    board.getBoard()[endFile][endRank - 1] = null;
-                                    board.getBoard()[startFile][startRank] = null;
-                                    moves.add(move);
-                                    curPlayer = !curPlayer;
-                                    return true;
-
-
-
-                                }
-                            if(endRank == startRank - 1 && movingPiece.getColor() == false)
-                                {
-                                    //Valid black En passant left
-                                    Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
-                                    board.getBoard()[endFile][endRank] = movingPiece;
-                                    board.getBoard()[endFile][endRank + 1] = null;
-                                    board.getBoard()[startFile][startRank] = null;
-                                    moves.add(move);
-                                    curPlayer = !curPlayer;
-                                    return true;
-
-                                }    
-
-                        }
-                    }
-
-                    else if(lastMove.getEnd()[0] == startFile + 1)
-                    {   
-                        //Right capture
-                        if(endFile == startFile + 1)
-                        {
-                            if(endRank == startRank + 1 && movingPiece.getColor())
-                                {
-                                    //valid white En passant right
-                                    Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
-                                    board.getBoard()[endFile][endRank] = movingPiece;
-                                    board.getBoard()[endFile][endRank - 1] = null;
-                                    board.getBoard()[startFile][startRank] = null;
-                                    moves.add(move);
-                                    curPlayer = !curPlayer;
-                                    return true;
-                                }
-                            if(endRank == startRank - 1 && movingPiece.getColor() == false)
-                                {
-                                   //valid black en passant right
-                                    Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
-                                    board.getBoard()[endFile][endRank] = movingPiece;
-                                    board.getBoard()[endFile][endRank + 1] = null;
-                                    board.getBoard()[startFile][startRank] = null;
-                                    moves.add(move);
-                                    curPlayer = !curPlayer;
-                                    return true;
-                                }
-                        }
-                    }
-                }
-            }
-        }
-
-
-            
         Move move = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
 
         if(move.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(move)) {
         	if(isPawnMove)
-
         		{
         			if(endFile == 7)
         			{
@@ -152,9 +71,7 @@ public class Game {
         			{
         				movingPiece = new Queen(startFile, startRank, false);
         			}
-                  
         		}
-
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
             moves.add(move);
@@ -206,7 +123,61 @@ public class Game {
 
     }
 
+    public boolean stalemate() {
+        if(board.inCheck(curPlayer)) {
+            return false; // if your are in check, you are not stalemated
+        }
+
+        Piece[][] squares = board.getBoard();
+        
+        for(int file = 0; file < 8) {
+            for(int rank = 0; rank < 8) {
+                if(squares[file][rank] != null) {
+                    Piece piece = squares[file][rank]
+                    if(piece.getColor() == curPlayer) {
+                        if(piece.getLegalMoves(board).size() != 0) {
+                            return false; // if any of our pieces can move, we are not stalemated
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean checkmate() {
+        if(!board.inCheck(curPlayer)) {
+            return false; // if you aren't in check, you aren't checkmated
+        }
+
+        Piece[][] squares = board.getBoard();
+        
+        for(int file = 0; file < 8) {
+            for(int rank = 0; rank < 8) {
+                if(squares[file][rank] != null) {
+                    Piece piece = squares[file][rank]
+                    if(piece.getColor() == curPlayer) {
+                        ArrayList<Move> moves = piece.getLegalMoves(board);
+                        if(moves.size() != 0) {
+                            // this piece has moves and is yours
+                            for(Move move : moves) {
+                                if(!causesCheck(move)) {
+                                    return false; 
+                                    // if you have a piece that can move in a way that you aren't in check, you aren't checkmated
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
+
+
+
 
     public void setUpBoard() {
         gameUI = new GameUI(this);
@@ -226,4 +197,6 @@ public class Game {
 
         // TODO: Add interactive user-input testing in console
     }
+
+
 }
