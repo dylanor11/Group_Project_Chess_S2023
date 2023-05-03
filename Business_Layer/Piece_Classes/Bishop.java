@@ -137,7 +137,7 @@ public class Bishop extends Piece{
 			return false;
 		}
 
-		if(board[endFile][endRank].isWhite() == this.isWhite())
+		if((board[endFile][endRank].getColor() == true) == (this.getColor() == true))
 		{
 			return false;
 		}
@@ -178,7 +178,7 @@ public class Bishop extends Piece{
 		int y = startFile + fileOffset;
 
 		for(int x = startRank + rankOffset; x != endRank; x += rankOffset){
-			if(board[y][x] != nullPiece){
+			if(board[y][x] != null){
 				return false;
 			}
 			y += fileOffset;
