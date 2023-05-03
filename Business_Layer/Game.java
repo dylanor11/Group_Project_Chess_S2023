@@ -211,8 +211,8 @@ public class Game {
 
         Piece[][] squares = board.getBoard();
         
-        for(int file = 0; file < 8;) {
-            for(int rank = 0; rank < 8;) {
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; file++) {
                 if(squares[file][rank] != null) {
                     Piece piece = squares[file][rank];
                     if(piece.getColor() == curPlayer) {
@@ -233,8 +233,8 @@ public class Game {
 
         Piece[][] squares = board.getBoard();
         
-        for(int file = 0; file < 8;) {
-            for(int rank = 0; rank < 8;) {
+        for(int file = 0; file < 8; file++) {
+            for(int rank = 0; rank < 8; rank++) {
                 if(squares[file][rank] != null) {
                     Piece piece = squares[file][rank];
                     if(piece.getColor() == curPlayer) {
