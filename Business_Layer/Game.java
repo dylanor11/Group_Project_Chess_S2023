@@ -1,4 +1,5 @@
 package Group_Project_Chess_S2023.Business_Layer;
+
 import Group_Project_Chess_S2023.User_Layer.*;
 import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.Queen;
 import java.util.ArrayList;
@@ -202,6 +203,8 @@ public class Game {
 
     }
 
+
+    // Technically the stalemate and checkmate checkers will go when you still can do a special move like En Passant
     public boolean stalemate() {
         if(board.inCheck(curPlayer)) {
             return false; // if your are in check, you are not stalemated
@@ -254,9 +257,6 @@ public class Game {
     }
 
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
-
-
-
 
     public void setUpBoard() {
         gameUI = new GameUI(this);

@@ -99,9 +99,9 @@ public class Board {
 
         for(int file = 0; file < 8; file++) {
             for(int rank = 0; rank < 8; rank++) {
-                if(squares[file][rank] != null) {
+                if(squares[file][rank] != null && squares[file][rank].getColor() != curPlayer) {
                     ArrayList<Move> tempMoves = tempPieces[file][rank].getLegalMoves(tempBoard);
-                    for(Move move : tempMoves) {
+                    for(Move move : tempMoves) { // if the opponent has a piece that can move onto your king, you are in check
                         if(curPlayer) { // ... is white 
                             if(move.getEnd()[0] == whiteKing.getFile() && move.getEnd()[1] == whiteKing.getRank()) {
                                 return true;
