@@ -120,14 +120,15 @@ public class Board {
     }
 
     // legacy - don't use
+    /**
     public boolean stalemate(boolean curPlayer) {
-        for(int file = 0; file < 8) {
-            for(int rank = 0; rank < 8) {
+        for(int file = 0; file < 8;) {
+            for(int rank = 0; rank < 8;) {
                 if(squares[file][rank] != null) {
                     Piece piece = squares[file][rank]
                     if(piece.getColor() == curPlayer) {
                         if(piece.getLegalMoves(this).size() == 0) {
-                            return true
+                            return true;
                         }
                     }
                 }
@@ -138,13 +139,13 @@ public class Board {
     // legacy - don't use
     public boolean checkmate(boolean curPlayer) {
         // check that every move the current player can make will not stop check
-        for(int file = 0; file < 8) {
-            for(int rank = 0; rank < 8) {
+        for(int file = 0; file < 8;) {
+            for(int rank = 0; rank < 8;) {
                 if(squares[file][rank] != null) {
-                    Piece piece = squares[file][rank]
+                    Piece piece = squares[file][rank];
                     if(piece.getColor() == curPlayer) {
                         if(piece.getLegalMoves(this).size() == 0) {
-                            return true
+                            return true;
                         }
                     }
                 }
@@ -152,4 +153,5 @@ public class Board {
         }
 
     }
+  **/
 }

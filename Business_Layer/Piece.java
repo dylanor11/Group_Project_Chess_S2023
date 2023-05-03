@@ -38,6 +38,7 @@ public abstract class Piece {
     /*
      * Checks if a move will put the piece's player's own king in check
      */
+  /**
     private boolean causesCheck(Move newMove) {
         Piece movingPiece = board.getBoard()[newMove.getStart()[0]][newMove.getStart()[1]];
         // creates new post-move board and checks if a given color's king will be in check in that position.
@@ -51,5 +52,5 @@ public abstract class Piece {
         return tempBoard.inCheck(color); // returns if after the move the current player would be in check
 
     }
-
+**/
 }

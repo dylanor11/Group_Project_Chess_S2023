@@ -9,8 +9,6 @@ public class Game {
     private Board board;
     private boolean curPlayer; // true if white, false if black
     private List<Move> moves;
-    private GameUI gameUI;
-
     /*
      * Creates a new game with 2 players of default names
      */
@@ -50,10 +48,10 @@ public class Game {
 
     public boolean move(int startFile, int startRank, int endFile, int endRank) {
 		boolean isPawnMove = false; //We need to know this for pawn promotion and for en passant
-        move lastMove = moves[moves.size()-1];
+        Move lastMove = moves.get(moves.size()-1);
         Piece movingPiece = board.getBoard()[startFile][startRank];
         if(movingPiece == null || movingPiece.getColor() != curPlayer) return false; // stops if player tries to move null or opponent piece
-        if(movingPiece.getSymbol == "P") // If the movivng piece is a pawn we check for that
+        if(movingPiece.getSymbol() == 'P') // If the movivng piece is a pawn we check for that
         	{
         		isPawnMove = true; 
         	}
@@ -62,7 +60,7 @@ public class Game {
         if(isPawnMove)
         {  
             //If the last move was was a pawn double move
-            if(lastMove.getPieceType() == "P" && Math.abs(lastMove.getStart()[1] - lastMove.getEnd()[1]) = 2)
+            if(lastMove.getPieceType() == 'P' && Math.abs(lastMove.getStart()[1] - lastMove.getEnd()[1]) == 2)
             {
                 //If our pawn is on the same rank as where the last one ended
                 if(startRank == lastMove.getEnd()[1])
@@ -136,7 +134,7 @@ public class Game {
             }
         }
 
-        if(move.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(move)) {
+        if(lastMove.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(lastMove)) {
         	if(isPawnMove)
 
         		{
@@ -153,7 +151,7 @@ public class Game {
 
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
-            moves.add(move);
+            moves.add(lastMove);
             curPlayer = !curPlayer;
             return true;
 
@@ -209,10 +207,10 @@ public class Game {
 
         Piece[][] squares = board.getBoard();
         
-        for(int file = 0; file < 8) {
-            for(int rank = 0; rank < 8) {
+        for(int file = 0; file < 8;) {
+            for(int rank = 0; rank < 8;) {
                 if(squares[file][rank] != null) {
-                    Piece piece = squares[file][rank]
+                    Piece piece = squares[file][rank];
                     if(piece.getColor() == curPlayer) {
                         if(piece.getLegalMoves(board).size() != 0) {
                             return false; // if any of our pieces can move, we are not stalemated
@@ -231,10 +229,10 @@ public class Game {
 
         Piece[][] squares = board.getBoard();
         
-        for(int file = 0; file < 8) {
-            for(int rank = 0; rank < 8) {
+        for(int file = 0; file < 8;) {
+            for(int rank = 0; rank < 8;) {
                 if(squares[file][rank] != null) {
-                    Piece piece = squares[file][rank]
+                    Piece piece = squares[file][rank];
                     if(piece.getColor() == curPlayer) {
                         ArrayList<Move> moves = piece.getLegalMoves(board);
                         if(moves.size() != 0) {
@@ -255,15 +253,8 @@ public class Game {
 
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
 
-
-
-
-    public void setUpBoard() {
-        gameUI = new GameUI(this);
-    }
-
     public static void main(String[] args) {
-        Game game1 = new Game();
+        GameUI gameUI = new GameUI();
         //game1.rudimentaryPrint();
         //game1.move(1, 0, 2, 2);
         //game1.move(6, 0, 7, 2);
@@ -271,8 +262,6 @@ public class Game {
         //game1.move(6, 7, 7, 5);
 
         // game1.move(0, 0, 0, 2);
-        //game1.rudimentaryPrint();
-        //game1.setUpBoard();
 
         // TODO: Add interactive user-input testing in console
     }
