@@ -1,8 +1,12 @@
 package Group_Project_Chess_S2023.Business_Layer;
 
 import Group_Project_Chess_S2023.User_Layer.*;
-import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.Queen;
-import Group_Project_Chess_S2023.Business_Layer.DAO;
+import  Group_Project_Chess_S2023.Business_Layer.Piece_Classes.*;
+
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -256,8 +260,19 @@ Move newMove = new Move(curPlayer, startFile, startRank, endFile, endRank, movin
         return true;
     }
 
-    public void saveMoveList() {
-        DAO.saveMoves(moves);
+    public void saveMoveToFile(String fileName) {
+
+        try {
+            File file = new File(fileName);
+            FileWriter writer = new FileWriter(file, true);
+            for (Move move : this.moves) {
+                writer.write(move.toString() + "\n");
+            }
+            writer.close();
+            System.out.println("Moves saved to file: " + fileName);
+        } catch (IOException e) {
+            System.err.println("Error occurred while writing to file: " + e.getMessage());
+        }
     }
 
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check

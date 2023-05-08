@@ -248,7 +248,8 @@ public class GameUI extends JFrame implements MouseListener, MouseMotionListener
     }
       
     } else if (e.getSource() == saveButton) {
-      JOptionPane.showMessageDialog(this, "Guys someone needs to implement DAO still.", "Bro please pay attention", JOptionPane.WARNING_MESSAGE);
+      this.game.saveMoveToFile("gamemove.txt");
+   //   JOptionPane.showMessageDialog(this, "Guys someone needs to implement DAO still.", "Bro please pay attention", JOptionPane.WARNING_MESSAGE);
     } else if (e.getSource() == playButton) {
       this.remove(startPanel);
       this.add(mainPanel);
