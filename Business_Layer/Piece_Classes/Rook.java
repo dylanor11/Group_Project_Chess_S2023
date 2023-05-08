@@ -21,91 +21,46 @@ public class Rook extends Piece {
     @Override
     public ArrayList<Move> getLegalMoves(Board curBoard) {
         ArrayList<Move> newMoves = new ArrayList<Move>();
-        int newFile;
-        int newRank;
-        int step = 1;
-        // left move
-            while (step < 8) {
-
-                newFile = file -step;
-                newRank = rank ;
-                if (isValidRookMove(curBoard,newFile, newRank)) {
-                    newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
-                    step++;
-                }
-                else{
-                    step = 1;
-                    break;
-                }
-
-            }
-        // right move
-        while (step < 8) {
-
-            newFile = file +step;
-            newRank = rank ;
-            if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
-                step++;
-            }
-            else{
-                step = 1;
+        // Generate legal moves for rook
+        // Check vertical moves
+        for (int i = file + 1; i <= 7; i++) {
+            if (curBoard.getBoard()[i][rank] == null)
+                newMoves.add(new Move(color, file, rank, i, rank, symbol));
+            else {
+                if (curBoard.getBoard()[i][rank].getColor() != this.getColor())
+                    newMoves.add(new Move(color, file, rank, i, rank, symbol));
                 break;
             }
-
         }
-        // down move
-        while (step < 8) {
-
-            newFile = file ;
-            newRank = rank - step;
-            if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
-                step++;
-            }
-            else{
-                step = 1;
+        for (int i = file - 1; i >= 0; i--) {
+            if (curBoard.getBoard()[i][rank] == null)
+                newMoves.add(new Move(color, file, rank, i, rank, symbol));
+            else {
+                if (curBoard.getBoard()[i][rank].getColor() != this.getColor())
+                    newMoves.add(new Move(color, file, rank, i, rank, symbol));
                 break;
             }
-
         }
-        // up move
-        while (step < 8) {
 
-            newFile = file ;
-            newRank = rank + step;
-            if (isValidRookMove(curBoard,newFile, newRank)) {
-                newMoves.add(new Move(color,file, rank, newFile, newRank, 'R'));
-                step++;
-            }
-            else{
-                step = 1;
+        // Check horizontal moves
+        for (int j = rank + 1; j <= 7; j++) {
+            if (curBoard.getBoard()[file][j] == null)
+                newMoves.add(new Move(color, file, rank, file, j, symbol));
+            else {
+                if (curBoard.getBoard()[file][j].getColor() != this.getColor())
+                    newMoves.add(new Move(color, file, rank, file, j, symbol));
                 break;
             }
-
         }
-          return newMoves;
-    }
-
-
-
-    public boolean isValidRookMove(Board curBoard, int toFile, int toRank) {
-        
-        if ( toFile < 0 || toFile >= 7 || toRank < 0 || toRank >= 7) {
-            return false;  // Piece out of board range, move invalid
+        for (int j = rank - 1; j >= 0; j--) {
+            if (curBoard.getBoard()[file][j] == null)
+                newMoves.add(new Move(color, file, rank, file, j, symbol));
+            else {
+                if (curBoard.getBoard()[file][j].getColor() != this.getColor())
+                    newMoves.add(new Move(color, file, rank, file, j, symbol));
+                break;
+            }
         }
-
-        Piece piece = curBoard.getBoard()[toFile][toRank];
-
-        if(piece == null) {
-            return false;
-        }
-
-        if (piece.getColor() == color) {
-            return false;  // The target position is occupied by a friendly piece, move invalid
-        }
-
-
-        return true;
+        return newMoves;
     }
 }
