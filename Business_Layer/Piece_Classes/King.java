@@ -23,41 +23,20 @@ public class King extends Piece {
     @Override
     public ArrayList<Move> getLegalMoves(Board curBoard) {
         ArrayList<Move> newMoves = new ArrayList<Move>();
-        int[][] moves = {{-1, -1}, {0, -1}, {-1, -1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-        for (int[] move : moves) {
+        int[][] directions = {{1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}};
 
-            int newFile = file + move[0];
-            int newRank = rank + move[1];
-
-            if (isValidKingMove(curBoard,newFile, newRank)) {
-              newMoves.add(new Move(color,file, rank, newFile, newRank, 'K'));
+        for (int i = 0; i < directions.length; i++) {
+            int newFile = file + directions[i][0];
+            int newRank = rank + directions[i][1];
+            if (newFile < 0 || newFile > 7 || newRank < 0 || newRank > 7) continue;
+            if (curBoard.getBoard()[newFile][newRank] == null) {
+                newMoves.add(new Move(color, file, rank, newFile, newRank, symbol));
+            } else if (curBoard.getBoard()[newFile][newRank].getColor() != this.getColor()) {
+                newMoves.add(new Move(color, file, rank, newFile, newRank, symbol));
             }
         }
         return newMoves;
     }
-
-
-    public boolean isValidKingMove(Board curBoard, int toFile, int toRank) {
-        
-        if ( toFile < 0 || toFile >= 7 || toRank < 0 || toRank >= 7) {
-            return false;  // Piece out of board range, move invalid
-        }
-
-        Piece piece = curBoard.getBoard()[toFile][toRank];
-
-        if(piece == null) {
-            return false;
-        }
-
-        if (piece.getColor() == color) {
-            return false;  // The target position is occupied by a friendly piece, move invalid
-        }
-
-
-        return true;
-    }
-
-
 
 
 
