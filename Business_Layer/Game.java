@@ -135,8 +135,8 @@ public class Game {
                 }
             }
         }
-
-        if(lastMove.isInList(movingPiece.getLegalMoves(board)) && !causesCheck(lastMove)) {
+Move newMove = new Move(curPlayer, startFile, startRank, endFile, endRank, movingPiece.getSymbol());
+        if(newMove.isInList(movingPiece.getLegalMoves(board))) {
         	if(isPawnMove)
 
         		{
@@ -153,7 +153,7 @@ public class Game {
 
             board.getBoard()[endFile][endRank] = movingPiece;
             board.getBoard()[startFile][startRank] = null; // hopefully this doesn't destroy the moving piece
-            moves.add(lastMove);
+            moves.add(newMove);
             curPlayer = !curPlayer;
             return true;
 
