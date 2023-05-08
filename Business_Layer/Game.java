@@ -2,6 +2,7 @@ package Group_Project_Chess_S2023.Business_Layer;
 
 import Group_Project_Chess_S2023.User_Layer.*;
 import Group_Project_Chess_S2023.Business_Layer.Piece_Classes.Queen;
+import Group_Project_Chess_S2023.Business_Layer.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -253,6 +254,10 @@ Move newMove = new Move(curPlayer, startFile, startRank, endFile, endRank, movin
             }
         }
         return true;
+    }
+
+    public void saveMoveList() {
+        DAO.saveMoves(moves);
     }
 
     // getting checkmate needs to verify that every move available to a player still results in a board in which they are in check
