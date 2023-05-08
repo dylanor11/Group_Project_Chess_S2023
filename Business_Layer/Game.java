@@ -24,7 +24,7 @@ public class Game {
         players[0] = new Player("Player 1");
         players[1] = new Player("Player 2");
         board = new Board();
-        curPlayer = true;
+        curPlayer = false;
         moves = new ArrayList<Move>();
     }
 
@@ -33,7 +33,7 @@ public class Game {
         players[0] = new Player(player1);
         players[1] = new Player(player2);
         board = new Board();
-        curPlayer = true;
+        curPlayer = false;
         moves = new ArrayList<Move>();
     }
 
@@ -145,11 +145,11 @@ Move newMove = new Move(curPlayer, startFile, startRank, endFile, endRank, movin
         	if(isPawnMove)
 
         		{
-        			if(endFile == 7)
+        			if(endRank == 7)
         			{
         				movingPiece = new Queen(startFile, startRank, true);
         			}
-        			if(endFile == 0)
+        			if(endRank == 0)
         			{
         				movingPiece = new Queen(startFile, startRank, false);
         			}
