@@ -45,7 +45,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
 						legalMoves.add(newMove);
@@ -69,7 +69,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
 						legalMoves.add(newMove);
@@ -93,7 +93,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
 						legalMoves.add(newMove);
@@ -117,7 +117,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, checkRank, 'Q');
 						legalMoves.add(newMove);
@@ -139,7 +139,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
 						this.legalMoves.add(newMove);
@@ -161,7 +161,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
 						this.legalMoves.add(newMove);
@@ -183,7 +183,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
 						this.legalMoves.add(newMove);
@@ -204,7 +204,7 @@ public class Queen extends Piece{
 				else
 				{
 					blocked = true;
-					if(board[checkFile][checkRank].getColor() != this.color)
+					if(board[checkFile][checkRank] != null && board[checkFile][checkRank].getColor() != this.color)
 					{
 						Move newMove = new Move(this.color, startFile, startRank, checkFile, startRank, 'Q');
 						this.legalMoves.add(newMove);
