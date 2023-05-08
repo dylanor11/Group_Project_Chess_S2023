@@ -29,7 +29,7 @@ public class GameUI extends JFrame implements MouseListener, MouseMotionListener
     startLabel.setBounds(120, 80, 300, 50);
     startPanel.add(startLabel);
     playButton = new JButton("Play");
-    playButton.setBounds(80, 130, 110, 25);
+    playButton.setBounds(90, 130, 110, 25);
     playButton.addActionListener(this);
     this.add(startPanel);
     this.setVisible(true);
@@ -162,13 +162,13 @@ public class GameUI extends JFrame implements MouseListener, MouseMotionListener
      yadjust = e.getY() - draggedOldParent.getLocation().y;
       draggedPiece = (JLabel)component;
      draggedPiece.setSize(draggedPiece.getWidth(), draggedPiece.getHeight());
-      draggedPiece.setLocation(e.getX() - xadjust, e.getY() - yadjust);
+      draggedPiece.setLocation(e.getX() + 30 + xadjust, e.getY() - 10 + yadjust);
      mainPanel.add(draggedPiece, JLayeredPane.DRAG_LAYER);
     }
   }
   public void mouseDragged(MouseEvent e) {
     if (draggedPiece != null) {
-      draggedPiece.setLocation(e.getX() - xadjust, e.getY() - yadjust);
+      draggedPiece.setLocation(e.getX() + 30 + xadjust, e.getY() - 10 + yadjust);
     }
   }
   public void mouseReleased(MouseEvent e) {
